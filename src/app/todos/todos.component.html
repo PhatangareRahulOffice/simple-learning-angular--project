@@ -1,0 +1,128 @@
+<div class="container mt-3">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="home-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-home"
+        type="button"
+        role="tab"
+        aria-controls="nav-home"
+        aria-selected="true"
+      >
+        Add Todo
+      </button>
+      <button
+        class="nav-link"
+        id="nav-profile-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-profile"
+        type="button"
+        role="tab"
+        aria-controls="nav-profile"
+        aria-selected="false"
+      >
+        Todo List
+      </button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="nav-home"
+      role="tabpanel"
+      aria-labelledby="nav-home-tab"
+    >
+      <h2 class="text-center mt-3">Add Task</h2>
+      <form [formGroup]="todoForm" (ngSubmit)="submitForm()">
+        <div class="row mt-5 d-flex">
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput">Title</label>
+            <input
+              type="text"
+              name="title"
+              formControlName="title"
+              class="form-control form-control-lg"
+              id="formGroupExampleInput"
+              placeholder="Enter Title"
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="formGroupExampleInput2">Description</label>
+            <input
+              type="text"
+              name="description"
+              formControlName="description"
+              class="form-control form-control-lg"
+              id="formGroupExampleInput2"
+              placeholder="Enter Description"
+            />
+          </div>
+        </div>
+        <div class="mt-2 d-flex btns">
+          <button type="submit"   class="btn mt-3 p-2 btn-primary">
+            Add Task
+          </button>
+          <button type="button"   class="btn mt-3 p-2 btn-primary">
+            update Task
+          </button>
+        </div>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of todoData; i: index">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>
+              <button class="btn btn-primary m-1" type="button" (click)="updateTodo(item.id)" >Update</button>
+              <button class="btn btn-danger m-1" type="button" (click)="deleteTodo(item.id)" >Delete</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      class="tab-pane fade mt-4"
+      id="nav-profile"
+      role="tabpanel"
+      aria-labelledby="nav-profile-tab"
+    >
+      <!-- <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of todoData; i: index">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>
+              <button class="btn btn-primary m-1" type="button" (click)="getTodoById(item.id)" >Update</button>
+              <button class="btn btn-danger m-1" type="button" (click)="deleteTodo(item.id)" >Delete</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+  </div>
+</div>
